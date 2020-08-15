@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TaskResource;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,8 @@ class TaskController extends Controller
         return Task::paginate();
     }
 
-    public function show(Task $task) {
-        return $task;
+    public function show(Task $task) :TaskResource {
+        return new TaskResource($task);
     }
 
     public function store(Request $request) {
